@@ -1,0 +1,17 @@
+<RCC>
+  <qresource prefix="icons/file/">
+    <file>icons/file/save.png</file>
+    <file>icons/file/save_as.png</file>
+    <file>icons/file/open.png</file>
+  </qresource>
+  <qresource prefix="icons/actions">
+    <file>icons/actions/exchange.png</file>
+    <file>icons/actions/delete.png</file>
+  </qresource>
+  <qresource prefix="icons/figure">
+    <file>icons/figure/check.png</file>
+    <file>icons/figure/join.png</file>
+    <file>icons/figure/rect.png</file>
+    <file>icons/figure/triangle.png</file>
+  </qresource>
+</RCC>
