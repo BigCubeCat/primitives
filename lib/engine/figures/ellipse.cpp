@@ -22,3 +22,7 @@ bool TEllipseShape::contains(const QPoint& point) const {
     const auto center = box.center();
     return is_point_inside_ellipse(point, center, mFirstRadius, mSecondRadius);
 }
+
+void TEllipseShape::draw(QPainter& painter) const {
+    painter.drawEllipse(boundingBox());
+}

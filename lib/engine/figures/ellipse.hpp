@@ -6,8 +6,12 @@
 class TEllipseShape : public AbstractShape {
    public:
     ~TEllipseShape() override = default;
+
     EFigureTag type() const override;
+
     bool contains(const QPoint& point) const override;
+
+    void draw(QPainter& painter) const override;
 
    private:
     double mFirstRadius;

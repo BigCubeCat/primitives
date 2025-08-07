@@ -22,7 +22,7 @@ class AbstractShape : public DrawableInterface {
 
     [[nodiscard]] int corner() const { return mBoundingBox.left(); }
 
-    void move(const QPoint& delta) { mBoundingBox.moveCenter(delta); }
+    void move(const QPoint& delta) override { mBoundingBox.moveCenter(delta); }
 
    private:
     QRect mBoundingBox;

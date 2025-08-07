@@ -13,3 +13,7 @@ bool TRectangleShape::contains(const QPoint& point) const {
     const auto box = boundingBox();
     return box.contains(point);
 }
+
+void TRectangleShape::draw(QPainter& painter) const {
+    painter.drawRect(boundingBox());
+}

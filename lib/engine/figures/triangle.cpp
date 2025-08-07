@@ -36,3 +36,11 @@ bool TTriangleShape::contains(const QPoint& point) const {
     // Если точка внутри, то будет ровно одна точка пересечения справа
     return (x1 > point.x()) ^ (x2 > point.x());
 }
+
+void TTriangleShape::draw(QPainter& painter) const {
+    const auto box = boundingBox();
+    const QPoint centerPoint(box.center().x(), box.top());
+    painter.drawLine(box.bottomLeft(), box.bottomRight());
+    painter.drawLine(box.bottomRight(), centerPoint);
+    painter.drawLine(centerPoint, box.bottomLeft());
+}
