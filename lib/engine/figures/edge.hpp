@@ -8,19 +8,22 @@
 
 class TEdge : public DrawableInterface {
    public:
-    explicit TEdge(std::weak_ptr<AbstractShape> begin,
-                   std::weak_ptr<AbstractShape> end)
-        : DrawableInterface(), mBegin(std::move(begin)), mEnd(std::move(end)) {}
+    explicit TEdge(std::weak_ptr<AbstractShape> begin)
+        : DrawableInterface(), mBegin(std::move(begin)) {}
 
     ~TEdge() override = default;
 
-    void move(const QPoint& delta) override {}
-
     void draw(QPainter& painter) const override;
+
+    void move(const QPoint& delta) override;
+
+    void setEnd(std::weak_ptr<AbstractShape> endShape);
 
    private:
     std::weak_ptr<AbstractShape> mBegin;
     std::weak_ptr<AbstractShape> mEnd;
+    bool mNotTemporary = false;
+    QPoint mCurrentEnd;
 };
 
 #endif

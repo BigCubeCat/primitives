@@ -47,7 +47,7 @@ qt_generate_deploy_app_script(
 install(SCRIPT ${deploy_script})
 
 add_subdirectory(lib/mainwindow)
-add_subdirectory(lib/figures)
+add_subdirectory(lib/engine)
 
 option(USE_TESTS "enable tests" OFF)
 

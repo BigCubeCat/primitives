@@ -1,4 +1,4 @@
-set(PROJECT_NAME figures_lib)
+set(PROJECT_NAME engine_lib)
 
 project(${PROJECT_NAME} LANGUAGES CXX)
 
@@ -12,21 +12,21 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 add_library(${PROJECT_NAME} STATIC
-  abstract_shape.hpp
-  drawable_iface.hpp
-  figure_tag.hpp
 
-  edge.hpp
-  edge.cpp
+  figures/abstract_shape.hpp
+  figures/drawable_iface.hpp
+  figures/figure_tag.hpp
+  figures/edge.hpp
+  figures/edge.cpp
+  figures/rectangle.hpp
+  figures/rectangle.cpp
+  figures/triangle.hpp
+  figures/triangle.cpp
+  figures/ellipse.hpp
+  figures/ellipse.cpp
 
-  rectangle.hpp
-  rectangle.cpp
-
-  triangle.hpp
-  triangle.cpp
-
-  ellipse.hpp
-  ellipse.cpp
+  scene.hpp
+  scene.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} 

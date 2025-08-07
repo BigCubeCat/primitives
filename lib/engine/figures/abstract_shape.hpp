@@ -7,6 +7,9 @@
 
 class AbstractShape : public DrawableInterface {
    public:
+    explicit AbstractShape(const QPoint& topLeft, const QPoint& bottomRight)
+        : mBoundingBox(topLeft, bottomRight) {}
+
     /// Тип фигуры
     virtual EFigureTag type() const = 0;
 
@@ -16,6 +19,10 @@ class AbstractShape : public DrawableInterface {
     [[nodiscard]] QRect boundingBox() const { return mBoundingBox; }
 
     [[nodiscard]] QPoint center() const { return mBoundingBox.center(); }
+
+    [[nodiscard]] int corner() const { return mBoundingBox.left(); }
+
+    void move(const QPoint& delta) { mBoundingBox.moveCenter(delta); }
 
    private:
     QRect mBoundingBox;

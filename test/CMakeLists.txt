@@ -6,7 +6,7 @@ add_executable(${TESTS_EXECUTABLE_NAME}
 )
 
 target_link_libraries(${TESTS_EXECUTABLE_NAME} PRIVATE
-        figures_lib
+        engine_lib
         GTest::gtest_main
         Threads::Threads
         Qt::Core

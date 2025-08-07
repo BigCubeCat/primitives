@@ -8,7 +8,6 @@ class DrawableInterface {
     virtual ~DrawableInterface() = default;
 
     virtual void draw(QPainter& painter) const = 0;
-
     virtual void move(const QPoint& delta) = 0;
 };
 
