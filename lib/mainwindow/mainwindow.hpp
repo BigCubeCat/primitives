@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include "../canvas/canvas.hpp"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -19,6 +21,7 @@ class MainWindow : public QMainWindow {
 
    private:
     Ui::MainWindow* mUi;
+    TCanvas* mCanvas;
 };
 
 #endif

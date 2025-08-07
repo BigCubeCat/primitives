@@ -20,11 +20,7 @@
    <bool>false</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout_2">
-    <item>
-     <layout class="QVBoxLayout" name="mainLayout"/>
-    </item>
-   </layout>
+   <layout class="QVBoxLayout" name="verticalLayout_2"/>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

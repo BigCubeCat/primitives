@@ -9,8 +9,9 @@
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent), mUi(new Ui::MainWindow) {
-
     mUi->setupUi(this);
+    mCanvas = new TCanvas();
+    setCentralWidget(dynamic_cast<QWidget*>(mCanvas));
 
     mUi->toolBar->addActions(mUi->menuFigure->actions());
 
