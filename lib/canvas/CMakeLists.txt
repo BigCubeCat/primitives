@@ -15,7 +15,7 @@ add_library(${PROJECT_NAME} STATIC
   canvas.hpp
 )
 
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets engine_lib)
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE CANVAS_LIBRARY)
 

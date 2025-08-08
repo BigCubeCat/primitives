@@ -18,3 +18,9 @@ ShapeSet::iterator TScene::nearestPoint(const QPoint& point) const {
     }
     return it;
 }
+
+void TScene::draw(QPainter& painter) {
+    for (auto it = mShapesList.begin(); it != mShapesList.end(); ++it) {
+        it->get()->draw(painter);
+    }
+}

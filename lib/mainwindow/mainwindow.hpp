@@ -22,6 +22,7 @@ class MainWindow : public QMainWindow {
    private:
     Ui::MainWindow* mUi;
     TCanvas* mCanvas;
+    std::shared_ptr<TScene> mScene;
 };
 
 #endif

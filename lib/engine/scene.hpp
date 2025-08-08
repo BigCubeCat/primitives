@@ -31,6 +31,8 @@ class TScene {
 
     void erase(ShapeSet::iterator it);
 
+    void draw(QPainter& painter);
+
    private:
     ShapeSet mShapesList;
 };

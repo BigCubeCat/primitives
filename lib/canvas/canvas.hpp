@@ -6,11 +6,16 @@
 #include <QPen>
 #include <QPixmap>
 #include <QWidget>
+#include <memory>
+
+#include "../engine/scene.hpp"
 
 class TCanvas : public QWidget {
    private:
+    std::shared_ptr<TScene> mScene;
+
    public:
-    explicit TCanvas(QWidget* parent = nullptr);
+    explicit TCanvas(std::shared_ptr<TScene> scene, QWidget* parent = nullptr);
     TCanvas(const TCanvas&) = delete;
     TCanvas(TCanvas&&) = delete;
     TCanvas& operator=(const TCanvas&) = delete;
