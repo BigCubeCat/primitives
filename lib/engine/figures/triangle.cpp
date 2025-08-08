@@ -19,8 +19,11 @@ double intersection(const std::pair<double, double>& func, int m) {
 }
 };  // namespace
 
-EFigureTag TTriangleShape::type() const {
-    return EFigureTag::kTriangle;
+TTriangleShape::TTriangleShape(const QPoint& topLeft, const QPoint& bottomRight)
+    : AbstractShape(topLeft, bottomRight) {}
+
+EObjectTag TTriangleShape::type() const {
+    return EObjectTag::kTriangle;
 }
 
 bool TTriangleShape::contains(const QPoint& point) const {

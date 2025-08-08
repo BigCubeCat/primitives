@@ -16,7 +16,7 @@ struct ShapeComparator {
 
 using ShapeSet = std::set<ShapePtr, ShapeComparator>;
 
-class TScene {
+class TObjectContainter {
    public:
     /*!
      * Добавление фигуры в множество
@@ -27,11 +27,15 @@ class TScene {
      * Обработка клика пользователя.
      * Вернет итератор на ближайший объект
     */
-    ShapeSet::iterator nearestPoint(const QPoint& point) const;
+    ShapeSet::const_iterator nearestPoint(const QPoint& point) const;
 
     void erase(ShapeSet::iterator it);
 
-    void draw(QPainter& painter);
+    ShapeSet::iterator begin() { return mShapesList.begin(); }
+    ShapeSet::iterator end() { return mShapesList.end(); }
+
+    ShapeSet::const_iterator begin() const { return mShapesList.begin(); }
+    ShapeSet::const_iterator end() const { return mShapesList.end(); }
 
    private:
     ShapeSet mShapesList;

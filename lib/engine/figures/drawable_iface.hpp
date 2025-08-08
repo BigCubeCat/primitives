@@ -3,9 +3,9 @@
 
 #include <QPainter>
 
-class DrawableInterface {
+class IObject {
    public:
-    virtual ~DrawableInterface() = default;
+    virtual ~IObject() = default;
 
     virtual void draw(QPainter& painter) const = 0;
     virtual void move(const QPoint& delta) = 0;

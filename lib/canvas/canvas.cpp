@@ -1,19 +1,19 @@
 #include "canvas.hpp"
-#include <qt6/QtGui/qpen.h>
 
 #include <QFileDialog>
-#include <QMessageBox>
 #include <QWidget>
 
-#include <QDebug>
 #include <utility>
+
+#include "../engine/TScene.hpp"
 
 TCanvas::TCanvas(std::shared_ptr<TScene> scene, QWidget* parent)
     : QWidget(parent), mScene(std::move(scene)) {}
 
 void TCanvas::paintEvent([[maybe_unused]] QPaintEvent* event) {
     QPainter painter(this);
-    painter.setBrush(QBrush(Qt::red, Qt::SolidPattern));
+    painter.setPen(QPen(Qt::black, 3));
+    painter.setBrush(Qt::NoBrush);
     mScene->draw(painter);
 }
 

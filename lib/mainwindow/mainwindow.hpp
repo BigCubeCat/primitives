@@ -5,6 +5,7 @@
 
 #include "../canvas/canvas.hpp"
 
+class TScene;
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;

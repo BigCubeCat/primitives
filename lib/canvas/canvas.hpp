@@ -8,7 +8,8 @@
 #include <QWidget>
 #include <memory>
 
-#include "../engine/scene.hpp"
+#include "../engine/TScene.hpp"
+#include "../engine/object_containter.hpp"
 
 class TCanvas : public QWidget {
    private:

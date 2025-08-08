@@ -6,10 +6,10 @@
 #include "abstract_shape.hpp"
 #include "drawable_iface.hpp"
 
-class TEdge : public DrawableInterface {
+class TEdge : public IObject {
    public:
     explicit TEdge(std::weak_ptr<AbstractShape> begin)
-        : DrawableInterface(), mBegin(std::move(begin)) {}
+        : IObject(), mBegin(std::move(begin)) {}
 
     ~TEdge() override = default;
 

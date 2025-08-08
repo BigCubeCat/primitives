@@ -3,15 +3,22 @@
 namespace {
 bool is_point_inside_ellipse(const QPoint& point, const QPoint& center,
                              double a, double b) {
-    auto translated = point - center;
-    double value = ((translated.x() * translated.x()) / (a * a)) +
-                   ((translated.y() * translated.y()) / (b * b));
+    const auto translated = point - center;
+    const double value = ((translated.x() * translated.x()) / (a * a)) +
+                         ((translated.y() * translated.y()) / (b * b));
     return value <= 1.0;
 }
 };  // namespace
 
-EFigureTag TEllipseShape::type() const {
-    return EFigureTag::kEllipse;
+TEllipseShape::TEllipseShape(const QPoint& topLeft, const QPoint& bottomRight)
+    : AbstractShape(topLeft, bottomRight) {
+    const auto box = boundingBox();
+    mFirstRadius = static_cast<double>(box.width()) / 2.0;
+    mSecondRadius = static_cast<double>(box.height()) / 2.0;
+}
+
+EObjectTag TEllipseShape::type() const {
+    return EObjectTag::kEllipse;
 }
 
 bool TEllipseShape::contains(const QPoint& point) const {

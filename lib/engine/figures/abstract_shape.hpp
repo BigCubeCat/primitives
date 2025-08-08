@@ -3,15 +3,15 @@
 
 #include <qpoint.h>
 #include "drawable_iface.hpp"
-#include "figure_tag.hpp"
+#include "tag.hpp"
 
-class AbstractShape : public DrawableInterface {
+class AbstractShape : public IObject {
    public:
     explicit AbstractShape(const QPoint& topLeft, const QPoint& bottomRight)
         : mBoundingBox(topLeft, bottomRight) {}
 
     /// Тип фигуры
-    virtual EFigureTag type() const = 0;
+    virtual EObjectTag type() const = 0;
 
     /// Вернет true, если точка внутри фигуры
     virtual bool contains(const QPoint& point) const = 0;

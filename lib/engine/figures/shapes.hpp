@@ -9,6 +9,6 @@
 #include "rectangle.hpp"
 #include "triangle.hpp"
 
-#include "figure_tag.hpp"
+#include "tag.hpp"
 
 #endif

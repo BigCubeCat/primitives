@@ -3,11 +3,13 @@
 
 #include "abstract_shape.hpp"
 
-class TEllipseShape : public AbstractShape {
+class TEllipseShape final : public AbstractShape {
    public:
+    explicit TEllipseShape(const QPoint& topLeft, const QPoint& bottomRight);
+
     ~TEllipseShape() override = default;
 
-    EFigureTag type() const override;
+    EObjectTag type() const override;
 
     bool contains(const QPoint& point) const override;
 

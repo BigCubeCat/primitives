@@ -1,12 +1,10 @@
 #include "mainwindow.hpp"
-#include <qlogging.h>
 #include "ui_mainwindow.h"
 
 #include <QFileDialog>
-#include <QFormLayout>
-#include <QMessageBox>
-#include <QSpinBox>
 #include <memory>
+
+#include "../engine/TScene.hpp"
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent), mUi(new Ui::MainWindow) {
@@ -15,7 +13,7 @@ MainWindow::MainWindow(QWidget* parent)
 
     mCanvas = new TCanvas(mScene);
 
-    setCentralWidget(dynamic_cast<QWidget*>(mCanvas));
+    setCentralWidget(mCanvas);
 
     mUi->toolBar->addActions(mUi->menuFigure->actions());
 

@@ -14,7 +14,7 @@ add_library(${PROJECT_NAME} STATIC
 
   figures/abstract_shape.hpp
   figures/drawable_iface.hpp
-  figures/figure_tag.hpp
+        figures/tag.hpp
   figures/edge.hpp
   figures/edge.cpp
   figures/rectangle.hpp
@@ -24,8 +24,12 @@ add_library(${PROJECT_NAME} STATIC
   figures/ellipse.hpp
   figures/ellipse.cpp
 
-  scene.hpp
-  scene.cpp
+        object_containter.hpp
+        object_containter.cpp
+        object_factory.cpp
+        object_factory.hpp
+        TScene.cpp
+        TScene.hpp
 )
 
 target_link_libraries(${PROJECT_NAME} 

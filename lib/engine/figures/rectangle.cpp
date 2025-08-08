@@ -5,8 +5,8 @@ TRectangleShape::TRectangleShape(const QPoint& topLeft,
                                  const QPoint& bottomRight)
     : AbstractShape(topLeft, bottomRight) {}
 
-EFigureTag TRectangleShape::type() const {
-    return EFigureTag::kRectangle;
+EObjectTag TRectangleShape::type() const {
+    return EObjectTag::kRectangle;
 }
 
 bool TRectangleShape::contains(const QPoint& point) const {
