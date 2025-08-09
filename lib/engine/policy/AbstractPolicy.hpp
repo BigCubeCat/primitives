@@ -20,9 +20,7 @@ class AbstractPolicy {
 
     virtual void rollback() = 0;
 
-    std::shared_ptr<TObjectContainer>& container() {
-        return mContainer;
-    }
+    std::shared_ptr<TObjectContainer>& container() { return mContainer; }
 
    private:
     std::shared_ptr<TObjectContainer> mContainer;

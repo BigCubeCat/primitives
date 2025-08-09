@@ -18,18 +18,28 @@ void TObjectContainer::erase(ObjectContainer::iterator it) {
         return;
     }
     mShapesList.erase(it);
-    for (auto edge = mEdges.begin(); edge != mEdges.end(); ) {
+    for (auto edge = mEdges.begin(); edge != mEdges.end();) {
         if (!(*edge)->isAlive()) {
             edge = mEdges.erase(edge);
         } else {
             ++edge;
         }
     }
-
 }
 
 void TObjectContainer::addEdge(const std::shared_ptr<TEdge>& edge) {
     if (edge->isAlive()) {
+        const auto newFrom = edge->from().lock();
+        const auto newTo = edge->to().lock();
+        for (auto edge_it = mEdges.begin(); edge_it != mEdges.end();
+             ++edge_it) {
+            const auto currFrom = (*edge_it)->from().lock();
+            const auto currTo = (*edge_it)->to().lock();
+            if (((newFrom == currFrom) && (newTo == currTo)) ||
+                ((newFrom == currTo) && (newTo == currFrom))) {
+                return;
+            }
+        }
         mEdges.insert(edge);
     }
 }
