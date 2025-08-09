@@ -15,6 +15,8 @@ class TCanvas : public QWidget {
     TCanvas& operator=(const TCanvas&) = delete;
     TCanvas& operator=(TCanvas&&) = delete;
 
+    void setNewScene(const std::shared_ptr<TScene>& scene) { mScene = scene; }
+
    protected:
     void mousePressEvent(QMouseEvent* event) override;
 
@@ -24,7 +26,7 @@ class TCanvas : public QWidget {
 
     void paintEvent(QPaintEvent* event) override;
 
-    void keyPressEvent(QKeyEvent *event) override;
+    void keyPressEvent(QKeyEvent* event) override;
 
    private:
     std::shared_ptr<TScene> mScene;

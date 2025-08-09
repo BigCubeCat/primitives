@@ -1,8 +1,6 @@
 #ifndef FIGURES_SCENE_HPP
 #define FIGURES_SCENE_HPP
 
-#include <unordered_set>
-
 #include "object_container.hpp"
 #include "object_factory.hpp"
 #include "policy/AbstractPolicy.hpp"
@@ -11,9 +9,9 @@ class TScene {
    public:
     explicit TScene();
 
-    void draw(QPainter& painter) const;
+    explicit TScene(std::shared_ptr<TObjectContainer> container);
 
-    void setContainer(const std::shared_ptr<TObjectContainer>& container);
+    void draw(QPainter& painter) const;
 
     /*!
      * @param point Начальная точка
@@ -48,6 +46,8 @@ class TScene {
 
     std::unordered_map<EToolTag, size_t> mPolicyMap;
     std::vector<std::shared_ptr<AbstractPolicy>> mPolicy;
+
+    void preparePolicy();
 };
 
 #endif

@@ -1,6 +1,7 @@
 #include "TScene.hpp"
 
 #include <QDebug>
+#include <utility>
 
 #include "object_factory.hpp"
 #include "policy/TCreatePolicy.hpp"
@@ -11,22 +12,13 @@
 TScene::TScene()
     : mObjectContainer(std::make_shared<TObjectContainer>()),
       mObjectFactory(TObjectFactory::instance()) {
-    mPolicyMap = {
-        {EToolTag::kCreate, 0},
-        {EToolTag::kJoin, 1},
-        {EToolTag::kMove, 2},
-        {EToolTag::kDelete, 3},
-    };
-    mPolicy = {
-        std::shared_ptr<AbstractPolicy>(
-            std::make_shared<TCreatePolicy>(mObjectContainer)),
-        std::shared_ptr<AbstractPolicy>(
-            std::make_shared<TJoinPolicy>(mObjectContainer)),
-        std::shared_ptr<AbstractPolicy>(
-            std::make_shared<TMovePolicy>(mObjectContainer)),
-        std::shared_ptr<AbstractPolicy>(
-            std::make_shared<TDeletePolicy>(mObjectContainer)),
-    };
+    preparePolicy();
+}
+
+TScene::TScene(std::shared_ptr<TObjectContainer> container)
+    : mObjectContainer(std::move(container)),
+      mObjectFactory(TObjectFactory::instance()) {
+    preparePolicy();
 }
 
 std::shared_ptr<TObjectContainer> TScene::objects() const {
@@ -37,10 +29,6 @@ void TScene::draw(QPainter& painter) const {
     mObjectContainer->draw(painter);
     const auto index = mPolicyMap.at(mToolTag);
     mPolicy[index]->draw(painter);
-}
-
-void TScene::setContainer(const std::shared_ptr<TObjectContainer>& container) {
-    mObjectContainer = container;
 }
 
 void TScene::click(const QPoint& point) {
@@ -88,4 +76,23 @@ void TScene::addObject(const std::shared_ptr<AbstractShape>& obj) {
 
 void TScene::addEdge(const std::shared_ptr<TEdge>& edge) {
     mObjectContainer->addEdge(edge);
+}
+
+void TScene::preparePolicy() {
+    mPolicyMap = {
+        {EToolTag::kCreate, 0},
+        {EToolTag::kJoin, 1},
+        {EToolTag::kMove, 2},
+        {EToolTag::kDelete, 3},
+    };
+    mPolicy = {
+        std::shared_ptr<AbstractPolicy>(
+            std::make_shared<TCreatePolicy>(mObjectContainer)),
+        std::shared_ptr<AbstractPolicy>(
+            std::make_shared<TJoinPolicy>(mObjectContainer)),
+        std::shared_ptr<AbstractPolicy>(
+            std::make_shared<TMovePolicy>(mObjectContainer)),
+        std::shared_ptr<AbstractPolicy>(
+            std::make_shared<TDeletePolicy>(mObjectContainer)),
+    };
 }

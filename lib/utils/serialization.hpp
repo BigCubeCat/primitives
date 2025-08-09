@@ -29,8 +29,8 @@ std::shared_ptr<TEdge> deserializeEdge(
     const QJsonObject& node,
     const std::vector<std::shared_ptr<AbstractShape>>& objects);
 
-void deserializeScene(std::shared_ptr<TScene>& scene, const QJsonObject& node);
+std::shared_ptr<TScene> deserializeScene(const QJsonObject& node);
 
-};  // namespace serialization
+};
 
 #endif

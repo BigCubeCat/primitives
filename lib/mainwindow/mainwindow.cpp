@@ -102,7 +102,8 @@ void MainWindow::onOpen() {
     if (fileName.isEmpty())
         return;
     mCurrentFilePath = fileName;
-    io_utils::loadScene(mScene, mCurrentFilePath);
+    mScene = io_utils::loadScene(mCurrentFilePath);
+    mCanvas->setNewScene(mScene);
     statusBar()->showMessage(QFileInfo(mCurrentFilePath).fileName());
     mCanvas->update();
 }
