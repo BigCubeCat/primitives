@@ -14,6 +14,8 @@ target_link_libraries(mainwindow
         Qt6::Widgets
         PRIVATE
         canvas_lib
+        utils_lib
+        engine_lib
 )
 
 target_include_directories(mainwindow PUBLIC

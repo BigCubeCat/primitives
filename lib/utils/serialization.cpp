@@ -61,8 +61,10 @@ QJsonObject serialization::serializeScene(
     for (const auto& edge : edges) {
         edgeArray.append(serializeEdge(edge, shapeIndexes));
     }
+    qDebug() << objectsArray;
+    qDebug() << edgeArray;
     result["objects"] = objectsArray;
-    result["links"] = objectsArray;
+    result["links"] = edgeArray;
     return result;
 }
 
@@ -72,7 +74,11 @@ EObjectTag serialization::deserializeTag(const QString& tag) {
         {"triangle", EObjectTag::kTriangle},
         {"rectangle", EObjectTag::kRectangle},
     };
-    return tagMap.at(tag);
+    const auto value = tagMap.find(tag);
+    if (value == tagMap.end()) {
+        return EObjectTag::kTriangle;
+    }
+    return value->second;
 }
 
 std::shared_ptr<AbstractShape> serialization::deserializeObject(
@@ -92,7 +98,7 @@ std::shared_ptr<AbstractShape> serialization::deserializeObject(
     return factory(QPoint(leftX, topY), QPoint(rightX, bottomY), tag);
 }
 
-std::shared_ptr<TEdge> deserializeEdge(
+std::shared_ptr<TEdge> serialization::deserializeEdge(
     const QJsonObject& node,
     const std::vector<std::shared_ptr<AbstractShape>>& objects) {
     const auto from = node["from"].toInt();
@@ -104,7 +110,7 @@ std::shared_ptr<TEdge> deserializeEdge(
     return std::make_shared<TEdge>(objects[from], objects[to]);
 }
 
-void deserializeScene(std::shared_ptr<TScene>& scene, const QJsonObject& node) {
+void serialization::deserializeScene(std::shared_ptr<TScene>& scene, const QJsonObject& node) {
     TObjectContainer mContainer;
 
     QJsonArray nodesArray = node["objects"].toArray();

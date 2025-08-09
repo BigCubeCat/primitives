@@ -23,6 +23,10 @@ class MainWindow : public QMainWindow {
     void setDelete();
     void setMove();
 
+    void onOpen();
+    void onSave();
+    void onSaveAs();
+
    public:
     explicit MainWindow(QWidget* parent = nullptr);
     ~MainWindow() override;
@@ -32,6 +36,8 @@ class MainWindow : public QMainWindow {
     TCanvas* mCanvas;
     QActionGroup* mActionGroup;
     std::shared_ptr<TScene> mScene;
+
+    QString mCurrentFilePath;
 
     void setupToolbar();
     void connectSlots();
