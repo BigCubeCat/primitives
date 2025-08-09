@@ -29,6 +29,8 @@ class TScene {
 
     TObjectContainer objects() const;
 
+    EToolTag tool() const;
+
    private:
     TObjectContainer mObjectContainer;
     TObjectFactory& mObjectFactory;

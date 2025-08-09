@@ -24,6 +24,8 @@ class TCanvas : public QWidget {
 
     void paintEvent(QPaintEvent* event) override;
 
+    void keyPressEvent(QKeyEvent *event) override;
+
    private:
     std::shared_ptr<TScene> mScene;
 };

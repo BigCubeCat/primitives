@@ -89,3 +89,7 @@ void TScene::setTool(const EToolTag& tag) {
 void TScene::setObject(const EObjectTag& obj) {
     mObjectTag = obj;
 }
+
+EToolTag TScene::tool() const {
+    return mToolTag;
+}
