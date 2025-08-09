@@ -1,5 +1,7 @@
 #include "TScene.hpp"
 
+#include <QDebug>
+
 #include "object_factory.hpp"
 
 TScene::TScene() : mObjectFactory(TObjectFactory::instance()) {}
@@ -20,9 +22,7 @@ void TScene::click(const QPoint& point) {
     // TODO: policy pattern
     if (mToolTag == EToolTag::kDelete) {
         auto it = mObjectContainer.nearestPoint(point);
-        if (it != mObjectContainer.end()) {
-            mObjectContainer.erase(it);
-        }
+        mObjectContainer.erase(it);
     } else if (mToolTag == EToolTag::kMove) {
         mCurrentObject = nullptr;
         auto it = mObjectContainer.nearestPoint(point);
@@ -50,6 +50,7 @@ void TScene::move(const QPoint& point) {
             mObjectFactory.createObject(mCurrentPoint, point, mObjectTag);
     } else if (mToolTag == EToolTag::kMove && mCurrentObject != nullptr) {
         mCurrentObject->move(point - mCurrentPoint);
+        mCurrentPoint = point;
     }
 }
 

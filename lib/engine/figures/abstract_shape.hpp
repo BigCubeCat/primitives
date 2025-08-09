@@ -32,7 +32,9 @@ class AbstractShape : public IObject {
 
     [[nodiscard]] int corner() const { return mBoundingBox.left(); }
 
-    void move(const QPoint& delta) override { mBoundingBox.moveCenter(delta); }
+    void move(const QPoint& delta) override {
+        mBoundingBox.moveCenter(mBoundingBox.center() + delta);
+    }
 
    private:
     QRect mBoundingBox;

@@ -18,7 +18,7 @@ void TCanvas::paintEvent([[maybe_unused]] QPaintEvent* event) {
 }
 
 void TCanvas::mouseMoveEvent(QMouseEvent* event) {
-    if (!(event->buttons() & Qt::LeftButton)) {
+    if (event->button() == Qt::RightButton) {
         mScene->rollback();
         return;
     }
