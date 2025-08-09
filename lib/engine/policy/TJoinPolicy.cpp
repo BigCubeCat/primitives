@@ -7,7 +7,9 @@ void TJoinPolicy::click(const QPoint& point) {
     if (it == sceneObjects->end()) {
         return;
     }
-    mCurrentEdge = std::make_shared<TEdge>(*it);
+    mCurrentObject = *it;
+    mCurrentEdge = std::make_shared<TEdge>(mCurrentObject);
+    mCurrentEdge->move(point);
 }
 
 void TJoinPolicy::move(const QPoint& point) {
@@ -19,7 +21,7 @@ void TJoinPolicy::move(const QPoint& point) {
 }
 
 void TJoinPolicy::commit(const QPoint& point) {
-    if (!mCurrentEdge) {
+    if (!mCurrentEdge || !mCurrentObject) {
         mStartPoint = QPoint();
         return;
     }
@@ -27,6 +29,11 @@ void TJoinPolicy::commit(const QPoint& point) {
     auto it = sceneObjects->nearestPoint(point);
     if (it == sceneObjects->end()) {
         rollback();
+        return;
+    }
+    if (*it == mCurrentObject) {
+        rollback();
+        return;
     }
     mCurrentEdge->setEnd(*it);
     sceneObjects->addEdge(mCurrentEdge);
