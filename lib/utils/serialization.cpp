@@ -61,8 +61,6 @@ QJsonObject serialization::serializeScene(
     for (const auto& edge : edges) {
         edgeArray.append(serializeEdge(edge, shapeIndexes));
     }
-    qDebug() << objectsArray;
-    qDebug() << edgeArray;
     result["objects"] = objectsArray;
     result["links"] = edgeArray;
     return result;

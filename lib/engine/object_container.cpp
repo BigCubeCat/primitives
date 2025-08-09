@@ -1,7 +1,5 @@
 #include "object_container.hpp"
 
-#include <QDebug>
-
 void TObjectContainer::draw(QPainter& painter) const {
     for (const auto& object : mShapesList) {
         object->draw(painter);

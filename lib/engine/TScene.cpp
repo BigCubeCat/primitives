@@ -1,6 +1,5 @@
 #include "TScene.hpp"
 
-#include <QDebug>
 #include <utility>
 
 #include "object_factory.hpp"

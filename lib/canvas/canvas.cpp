@@ -47,7 +47,6 @@ void TCanvas::mouseReleaseEvent(QMouseEvent* event) {
 
 void TCanvas::keyPressEvent(QKeyEvent* event) {
     if (event->key() == Qt::Key_Escape) {
-        qDebug() << "ESC pressed";
         mScene->rollback();
         update();
     }
