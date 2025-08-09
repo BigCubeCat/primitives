@@ -1,10 +1,10 @@
 #ifndef SHAPES_HPP
 #define SHAPES_HPP
 
-#include "abstract_shape.hpp"
-#include "drawable_iface.hpp"
+#include "AbstractObject.hpp"
+#include "IObject.hpp"
 
-#include "edge.hpp"
+#include "TEdge.hpp"
 #include "ellipse.hpp"
 #include "rectangle.hpp"
 #include "triangle.hpp"

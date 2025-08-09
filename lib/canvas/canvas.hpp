@@ -5,7 +5,7 @@
 #include <QWidget>
 #include <memory>
 
-#include "../engine/TScene.hpp"
+#include "engine/TScene.hpp"
 
 class TCanvas : public QWidget {
    public:
@@ -15,6 +15,8 @@ class TCanvas : public QWidget {
     TCanvas& operator=(const TCanvas&) = delete;
     TCanvas& operator=(TCanvas&&) = delete;
 
+    void setNewScene(const std::shared_ptr<TScene>& scene) { mScene = scene; }
+
    protected:
     void mousePressEvent(QMouseEvent* event) override;
 
@@ -23,6 +25,8 @@ class TCanvas : public QWidget {
     void mouseReleaseEvent(QMouseEvent* event) override;
 
     void paintEvent(QPaintEvent* event) override;
+
+    void keyPressEvent(QKeyEvent* event) override;
 
    private:
     std::shared_ptr<TScene> mScene;

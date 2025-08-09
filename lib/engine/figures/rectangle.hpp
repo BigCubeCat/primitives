@@ -1,9 +1,9 @@
 #ifndef RECTANGLE_SHAPE_HPP
 #define RECTANGLE_SHAPE_HPP
 
-#include "abstract_shape.hpp"
+#include "AbstractObject.hpp"
 
-class TRectangleShape final : public AbstractShape {
+class TRectangleShape final : public AbstractObject {
    public:
     explicit TRectangleShape(const QPoint& topLeft, const QPoint& bottomRight);
 

@@ -2,13 +2,11 @@
 #include "ui_mainwindow.h"
 
 #include <QFileDialog>
-#include <QJsonDocument>
-#include <QMessageBox>
 #include <memory>
 
-#include "../engine/TScene.hpp"
-#include "../utils/io.hpp"
-#include "../utils/serialization.hpp"
+#include "engine/TScene.hpp"
+#include "utils/io.hpp"
+#include "utils/serialization.hpp"
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent),
@@ -102,7 +100,8 @@ void MainWindow::onOpen() {
     if (fileName.isEmpty())
         return;
     mCurrentFilePath = fileName;
-    io_utils::loadScene(mScene, mCurrentFilePath);
+    mScene = io_utils::loadScene(mCurrentFilePath);
+    mCanvas->setNewScene(mScene);
     statusBar()->showMessage(QFileInfo(mCurrentFilePath).fileName());
     mCanvas->update();
 }

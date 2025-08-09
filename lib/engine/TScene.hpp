@@ -1,16 +1,17 @@
 #ifndef FIGURES_SCENE_HPP
 #define FIGURES_SCENE_HPP
 
-#include "object_container.hpp"
-#include "object_factory.hpp"
+#include "TObjectContainer.hpp"
+#include "TObjectFactory.hpp"
+#include "policy/AbstractPolicy.hpp"
 
 class TScene {
    public:
     explicit TScene();
 
-    void draw(QPainter& painter) const;
+    explicit TScene(std::shared_ptr<TObjectContainer> container);
 
-    void setContainer(const TObjectContainer& container);
+    void draw(QPainter& painter) const;
 
     /*!
      * @param point Начальная точка
@@ -27,17 +28,26 @@ class TScene {
 
     void setObject(const EObjectTag& obj);
 
-    TObjectContainer objects() const;
+    std::shared_ptr<TObjectContainer> objects() const;
+
+    EToolTag tool() const;
+
+    EObjectTag objectTag() const;
+
+    void addObject(const std::shared_ptr<AbstractObject>& obj);
+
+    void addEdge(const std::shared_ptr<TEdge>& edge);
 
    private:
-    TObjectContainer mObjectContainer;
+    std::shared_ptr<TObjectContainer> mObjectContainer;
     TObjectFactory& mObjectFactory;
     EToolTag mToolTag = EToolTag::kCreate;
     EObjectTag mObjectTag = EObjectTag::kRectangle;
 
-    std::shared_ptr<AbstractShape> mCurrentObject;
-    std::shared_ptr<TEdge> mCurrentEdge;
-    QPoint mCurrentPoint;
+    std::unordered_map<EToolTag, size_t> mPolicyMap;
+    std::vector<std::shared_ptr<AbstractPolicy>> mPolicy;
+
+    void preparePolicy();
 };
 
 #endif

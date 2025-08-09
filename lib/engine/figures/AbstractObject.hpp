@@ -1,14 +1,14 @@
 #ifndef ABSTRACT_SHAPE_HPP
 #define ABSTRACT_SHAPE_HPP
 
-#include <qpoint.h>
+#include <QPoint>
 
-#include "drawable_iface.hpp"
+#include "IObject.hpp"
 #include "tag.hpp"
 
-class AbstractShape : public IObject {
+class AbstractObject : public IObject {
    public:
-    explicit AbstractShape(const QPoint& topLeft, const QPoint& bottomRight)
+    explicit AbstractObject(const QPoint& topLeft, const QPoint& bottomRight)
         : mBoundingBox(topLeft, bottomRight) {
         if (topLeft.x() > bottomRight.x() || topLeft.y() > bottomRight.y()) {
             const auto left = std::min(topLeft.x(), bottomRight.x());

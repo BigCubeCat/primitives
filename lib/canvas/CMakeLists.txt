@@ -1,18 +1,13 @@
-set(PROJECT_NAME canvas_lib)
+set(CANVASLIB_NAME canvas_lib)
 
-project(${PROJECT_NAME} LANGUAGES CXX)
-
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
-
-add_library(${PROJECT_NAME} STATIC
+add_library(${CANVASLIB_NAME} STATIC
   canvas.cpp
   canvas.hpp
 )
 
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets engine_lib)
+target_link_libraries(${CANVASLIB_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets engine_lib)
+
+target_include_directories(${CANVASLIB_NAME}
+        PUBLIC
+        ${CMAKE_SOURCE_DIR}/lib
+)

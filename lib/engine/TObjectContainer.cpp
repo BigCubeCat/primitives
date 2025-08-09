@@ -1,6 +1,4 @@
-#include "object_container.hpp"
-
-#include <QDebug>
+#include "TObjectContainer.hpp"
 
 void TObjectContainer::draw(QPainter& painter) const {
     for (const auto& object : mShapesList) {
@@ -11,7 +9,7 @@ void TObjectContainer::draw(QPainter& painter) const {
     }
 }
 
-void TObjectContainer::insert(const ShapePtr& shape) {
+void TObjectContainer::insert(const ObjectPtr& shape) {
     mShapesList.push_back(shape);
 }
 
@@ -20,12 +18,14 @@ void TObjectContainer::erase(ObjectContainer::iterator it) {
         return;
     }
     mShapesList.erase(it);
-    for (const auto& edge : mEdges) {
-        if (!edge->isAlive()) {
-            mEdges.erase(edge);
-            break;
+    for (auto edge = mEdges.begin(); edge != mEdges.end(); ) {
+        if (!(*edge)->isAlive()) {
+            edge = mEdges.erase(edge);
+        } else {
+            ++edge;
         }
     }
+
 }
 
 void TObjectContainer::addEdge(const std::shared_ptr<TEdge>& edge) {

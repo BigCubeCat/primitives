@@ -5,10 +5,12 @@
 
 #include <utility>
 
-#include "../engine/TScene.hpp"
+#include "engine/TScene.hpp"
 
 TCanvas::TCanvas(std::shared_ptr<TScene> scene, QWidget* parent)
-    : QWidget(parent), mScene(std::move(scene)) {}
+    : QWidget(parent), mScene(std::move(scene)) {
+    setFocusPolicy(Qt::StrongFocus);
+}
 
 void TCanvas::paintEvent([[maybe_unused]] QPaintEvent* event) {
     QPainter painter(this);
@@ -18,11 +20,11 @@ void TCanvas::paintEvent([[maybe_unused]] QPaintEvent* event) {
 }
 
 void TCanvas::mouseMoveEvent(QMouseEvent* event) {
-    if (event->button() == Qt::RightButton) {
+    if (event->buttons() & Qt::RightButton) {
         mScene->rollback();
-        return;
+    } else {
+        mScene->move(event->pos());
     }
-    mScene->move(event->pos());
     update();
 }
 
@@ -30,11 +32,22 @@ void TCanvas::mousePressEvent(QMouseEvent* event) {
     if (event->button() == Qt::LeftButton) {
         mScene->click(event->pos());
     }
+    setCursor(mScene->tool() == EToolTag::kMove ? Qt::ClosedHandCursor
+                                                : Qt::ArrowCursor);
+    update();
 }
 
 void TCanvas::mouseReleaseEvent(QMouseEvent* event) {
     if (event->button() == Qt::LeftButton) {
         mScene->commit(event->pos());
+    }
+    setCursor(Qt::ArrowCursor);
+    update();
+}
+
+void TCanvas::keyPressEvent(QKeyEvent* event) {
+    if (event->key() == Qt::Key_Escape) {
+        mScene->rollback();
         update();
     }
 }

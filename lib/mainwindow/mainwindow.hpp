@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QActionGroup>
 
-#include "../canvas/canvas.hpp"
+#include "canvas/canvas.hpp"
 
 class TScene;
 QT_BEGIN_NAMESPACE

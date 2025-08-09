@@ -29,7 +29,6 @@ target_link_libraries(${PROJECT_NAME}
         mainwindow
 )
 
-include(GNUInstallDirs)
 
 install(TARGETS ${PROJECT_NAME}
     BUNDLE  DESTINATION .
@@ -41,13 +40,3 @@ add_subdirectory(lib/utils)
 add_subdirectory(lib/engine)
 add_subdirectory(lib/canvas)
 add_subdirectory(lib/mainwindow)
-
-option(USE_TESTS "enable tests" OFF)
-
-if (USE_TESTS)
-    enable_testing()
-    add_subdirectory(test)
-endif()
-
-
-
