@@ -21,7 +21,6 @@ void TCanvas::paintEvent([[maybe_unused]] QPaintEvent* event) {
 
 void TCanvas::mouseMoveEvent(QMouseEvent* event) {
     if (event->buttons() & Qt::RightButton) {
-        qDebug() << "mouseMoveEvent rollback";
         mScene->rollback();
     } else {
         mScene->move(event->pos());

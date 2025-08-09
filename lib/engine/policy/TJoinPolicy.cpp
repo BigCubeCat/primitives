@@ -32,7 +32,8 @@ void TJoinPolicy::commit(const QPoint& point) {
 }
 
 void TJoinPolicy::draw(QPainter& painter) const {
-    mCurrentEdge->draw(painter);
+    if (mCurrentEdge)
+        mCurrentEdge->draw(painter);
 }
 
 void TJoinPolicy::rollback() {
