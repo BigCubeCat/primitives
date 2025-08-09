@@ -8,6 +8,8 @@ void TScene::draw(QPainter& painter) const {
     for (const auto& value : mObjectContainer) {
         value->draw(painter);
     }
+    if (mCurrentObject)
+        mCurrentObject->draw(painter);
 }
 
 void TScene::setContainer(const TObjectContainter& container) {
@@ -51,14 +53,13 @@ void TScene::move(const QPoint& point) {
     }
 }
 
-void TScene::commit(QPoint& point) {
+void TScene::commit(const QPoint& point) {
     if (mToolTag == EToolTag::kCreate) {
         mCurrentObject =
             mObjectFactory.createObject(mCurrentPoint, point, mObjectTag);
         mObjectContainer.insert(mCurrentObject);
         mCurrentObject = nullptr;
-    }
-    else if (mToolTag == EToolTag::kJoin) {
+    } else if (mToolTag == EToolTag::kJoin) {
         auto it = mObjectContainer.nearestPoint(point);
         mCurrentEdge->setEnd(*it);
         mObjectContainer.addEdge(mCurrentEdge);

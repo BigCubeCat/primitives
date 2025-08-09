@@ -19,7 +19,7 @@ class TScene {
 
     void move(const QPoint& point);
 
-    void commit(QPoint& point);
+    void commit(const QPoint& point);
 
     void rollback();
 

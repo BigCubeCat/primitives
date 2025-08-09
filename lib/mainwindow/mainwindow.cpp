@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget* parent)
     setCentralWidget(mCanvas);
 
     setupToolbar();
+    connectSlots();
 }
 
 void MainWindow::setupToolbar() {
@@ -35,6 +36,16 @@ void MainWindow::setupToolbar() {
     }
     mUi->toolBar->addSeparator();
     mUi->toolBar->addActions(mUi->menuFile->actions());
+}
+
+void MainWindow::connectSlots() {
+    connect(mUi->actionEllipse, &QAction::triggered, this, &MainWindow::setEllipse);
+    connect(mUi->actionRectangle, &QAction::triggered, this, &MainWindow::setRectangle);
+    connect(mUi->actionTriangle, &QAction::triggered, this, &MainWindow::setTriangle);
+
+    connect(mUi->actionEdge, &QAction::triggered, this, &MainWindow::setJoin);
+    connect(mUi->actionMove, &QAction::triggered, this, &MainWindow::setMove);
+    connect(mUi->actionDelete, &QAction::triggered, this, &MainWindow::setDelete);
 }
 
 MainWindow::~MainWindow() {

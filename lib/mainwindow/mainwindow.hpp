@@ -34,6 +34,7 @@ class MainWindow : public QMainWindow {
     std::shared_ptr<TScene> mScene;
 
     void setupToolbar();
+    void connectSlots();
 };
 
 #endif
