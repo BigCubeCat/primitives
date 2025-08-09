@@ -34,14 +34,15 @@ void TCanvas::mousePressEvent(QMouseEvent* event) {
     }
     setCursor(mScene->tool() == EToolTag::kMove ? Qt::ClosedHandCursor
                                                 : Qt::ArrowCursor);
+    update();
 }
 
 void TCanvas::mouseReleaseEvent(QMouseEvent* event) {
     if (event->button() == Qt::LeftButton) {
         mScene->commit(event->pos());
-        update();
     }
     setCursor(Qt::ArrowCursor);
+    update();
 }
 
 void TCanvas::keyPressEvent(QKeyEvent* event) {

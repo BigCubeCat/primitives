@@ -2,6 +2,9 @@
 #include <utility>
 
 void TEdge::draw(QPainter& painter) const {
+    if (mBegin.expired()) {
+        return;
+    }
     const auto firstPtr = mBegin.lock();
     const auto beginPoint = firstPtr->center();
 

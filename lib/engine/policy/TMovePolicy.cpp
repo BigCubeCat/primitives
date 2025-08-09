@@ -13,9 +13,15 @@ void TMovePolicy::click(const QPoint& point) {
 }
 
 void TMovePolicy::move(const QPoint& point) {
+    if (!mCurrentObject) {
+        return;
+    }
     mCurrentObject->move(point - mCurrentPoint);
     mCurrentPoint = point;
     mTotalMove += point;
+}
+void TMovePolicy::commit(const QPoint& point) {
+    mCurrentObject = nullptr;
 }
 
 void TMovePolicy::rollback() {

@@ -9,7 +9,9 @@
 class TEdge : public IObject {
    public:
     explicit TEdge(std::weak_ptr<AbstractShape> begin)
-        : IObject(), mBegin(std::move(begin)) {}
+        : IObject(), mBegin(std::move(begin)) {
+        mCurrentEnd = mBegin.lock()->center();
+    }
 
     explicit TEdge(std::weak_ptr<AbstractShape> begin,
                    std::weak_ptr<AbstractShape> end)

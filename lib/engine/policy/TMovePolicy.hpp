@@ -12,7 +12,7 @@ class TMovePolicy final : public AbstractPolicy {
 
     void move(const QPoint& point) override;
 
-    void commit([[maybe_unused]] const QPoint& point) override {};
+    void commit([[maybe_unused]] const QPoint& point) override;
 
     void draw([[maybe_unused]] QPainter& painter) const override {};
 
