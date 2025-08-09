@@ -1,7 +1,7 @@
 #ifndef FIGURES_IPOLICY_HPP
 #define FIGURES_IPOLICY_HPP
 
-#include "engine/object_container.hpp"
+#include "engine/TObjectContainer.hpp"
 
 class AbstractPolicy {
    public:

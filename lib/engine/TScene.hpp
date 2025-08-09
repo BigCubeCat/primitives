@@ -1,8 +1,8 @@
 #ifndef FIGURES_SCENE_HPP
 #define FIGURES_SCENE_HPP
 
-#include "object_container.hpp"
-#include "object_factory.hpp"
+#include "TObjectContainer.hpp"
+#include "TObjectFactory.hpp"
 #include "policy/AbstractPolicy.hpp"
 
 class TScene {
@@ -34,7 +34,7 @@ class TScene {
 
     EObjectTag objectTag() const;
 
-    void addObject(const std::shared_ptr<AbstractShape>& obj);
+    void addObject(const std::shared_ptr<AbstractObject>& obj);
 
     void addEdge(const std::shared_ptr<TEdge>& edge);
 

@@ -1,9 +1,9 @@
 #include "rectangle.hpp"
-#include "abstract_shape.hpp"
+#include "AbstractObject.hpp"
 
 TRectangleShape::TRectangleShape(const QPoint& topLeft,
                                  const QPoint& bottomRight)
-    : AbstractShape(topLeft, bottomRight) {}
+    : AbstractObject(topLeft, bottomRight) {}
 
 EObjectTag TRectangleShape::type() const {
     return EObjectTag::kRectangle;

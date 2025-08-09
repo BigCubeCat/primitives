@@ -2,7 +2,7 @@
 
 #include <utility>
 
-#include "object_factory.hpp"
+#include "TObjectFactory.hpp"
 #include "policy/TCreatePolicy.hpp"
 #include "policy/TDeletePolicy.hpp"
 #include "policy/TJoinPolicy.hpp"
@@ -69,7 +69,7 @@ EObjectTag TScene::objectTag() const {
     return mObjectTag;
 }
 
-void TScene::addObject(const std::shared_ptr<AbstractShape>& obj) {
+void TScene::addObject(const std::shared_ptr<AbstractObject>& obj) {
     mObjectContainer->insert(obj);
 }
 

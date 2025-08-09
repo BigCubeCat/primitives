@@ -25,6 +25,9 @@ void TJoinPolicy::commit(const QPoint& point) {
     }
     auto sceneObjects = container();
     auto it = sceneObjects->nearestPoint(point);
+    if (it == sceneObjects->end()) {
+        rollback();
+    }
     mCurrentEdge->setEnd(*it);
     sceneObjects->addEdge(mCurrentEdge);
     mCurrentObject = nullptr;

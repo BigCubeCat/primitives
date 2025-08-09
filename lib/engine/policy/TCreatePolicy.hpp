@@ -1,8 +1,8 @@
 #ifndef FIGURES_TCREATEPOLICY_HPP
 #define FIGURES_TCREATEPOLICY_HPP
 
-#include "engine/object_factory.hpp"
 #include "AbstractPolicy.hpp"
+#include "engine/TObjectFactory.hpp"
 
 class TCreatePolicy final : public AbstractPolicy {
    public:
@@ -24,7 +24,7 @@ class TCreatePolicy final : public AbstractPolicy {
    private:
     TObjectFactory& mObjectFactory;
     QPoint mStartPoint;
-    std::shared_ptr<AbstractShape> mCurrentObject;
+    std::shared_ptr<AbstractObject> mCurrentObject;
 
     EObjectTag mTag = EObjectTag::kRectangle;
 };

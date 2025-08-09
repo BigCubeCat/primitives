@@ -5,7 +5,7 @@
 
 class TObjectFactory {
    private:
-    using creatorFunction = std::function<std::shared_ptr<AbstractShape>(
+    using creatorFunction = std::function<std::shared_ptr<AbstractObject>(
         const QPoint&, const QPoint&)>;
     std::unordered_map<EObjectTag, creatorFunction> mCreators = {
         {EObjectTag::kRectangle,
@@ -28,7 +28,7 @@ class TObjectFactory {
    public:
     static TObjectFactory& instance();
 
-    std::shared_ptr<AbstractShape> operator()(const QPoint& topLeft,
+    std::shared_ptr<AbstractObject> operator()(const QPoint& topLeft,
                                                 const QPoint& bottomRight,
                                                 const EObjectTag& tag);
 

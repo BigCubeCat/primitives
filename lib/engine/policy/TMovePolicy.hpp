@@ -21,7 +21,7 @@ class TMovePolicy final : public AbstractPolicy {
    private:
     QPoint mCurrentPoint;
     QPoint mTotalMove;
-    std::shared_ptr<AbstractShape> mCurrentObject;
+    std::shared_ptr<AbstractObject> mCurrentObject;
     bool mHasStarted = false;
 };
 

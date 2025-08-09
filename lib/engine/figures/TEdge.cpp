@@ -1,5 +1,5 @@
-#include "edge.hpp"
 #include <utility>
+#include "TEdge.hpp"
 
 void TEdge::draw(QPainter& painter) const {
     if (mBegin.expired()) {
@@ -23,7 +23,7 @@ void TEdge::move(const QPoint& newEnd) {
     mCurrentEnd = newEnd;
 }
 
-void TEdge::setEnd(std::weak_ptr<AbstractShape> endShape) {
+void TEdge::setEnd(std::weak_ptr<AbstractObject> endShape) {
     mEnd = std::move(endShape);
     mNotTemporary = true;
 }
@@ -36,10 +36,10 @@ bool TEdge::isAlive() const {
     return !mBegin.expired() && !mEnd.expired();
 }
 
-std::weak_ptr<AbstractShape> TEdge::from() const {
+std::weak_ptr<AbstractObject> TEdge::from() const {
     return mBegin;
 }
 
-std::weak_ptr<AbstractShape> TEdge::to() const {
+std::weak_ptr<AbstractObject> TEdge::to() const {
     return mEnd;
 }

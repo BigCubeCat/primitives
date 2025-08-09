@@ -11,11 +11,11 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 add_library(${ENGINELIB_NAME} STATIC
-        figures/abstract_shape.hpp
-        figures/drawable_iface.hpp
+        figures/AbstractObject.hpp
+        figures/IObject.hpp
         figures/tag.hpp
-        figures/edge.hpp
-        figures/edge.cpp
+        figures/TEdge.hpp
+        figures/TEdge.cpp
         figures/rectangle.hpp
         figures/rectangle.cpp
         figures/triangle.hpp
@@ -23,10 +23,10 @@ add_library(${ENGINELIB_NAME} STATIC
         figures/ellipse.hpp
         figures/ellipse.cpp
 
-        object_container.hpp
-        object_container.cpp
-        object_factory.cpp
-        object_factory.hpp
+        TObjectContainer.hpp
+        TObjectContainer.cpp
+        TObjectFactory.cpp
+        TObjectFactory.hpp
         TScene.cpp
         TScene.hpp
         policy/AbstractPolicy.hpp

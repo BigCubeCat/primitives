@@ -2,9 +2,9 @@
 #define TRIANGLE_SHAPE_HPP
 
 #include <QPainter>
-#include "abstract_shape.hpp"
+#include "AbstractObject.hpp"
 
-class TTriangleShape final : public AbstractShape {
+class TTriangleShape final : public AbstractObject {
    public:
     explicit TTriangleShape(const QPoint& topLeft, const QPoint& bottomRight);
 

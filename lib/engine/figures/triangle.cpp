@@ -20,7 +20,7 @@ double intersection(const std::pair<double, double>& func, int m) {
 };  // namespace
 
 TTriangleShape::TTriangleShape(const QPoint& topLeft, const QPoint& bottomRight)
-    : AbstractShape(topLeft, bottomRight) {}
+    : AbstractObject(topLeft, bottomRight) {}
 
 EObjectTag TTriangleShape::type() const {
     return EObjectTag::kTriangle;

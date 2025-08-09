@@ -1,9 +1,9 @@
 #ifndef ELLIPSE_SHAPE_HPP
 #define ELLIPSE_SHAPE_HPP
 
-#include "abstract_shape.hpp"
+#include "AbstractObject.hpp"
 
-class TEllipseShape final : public AbstractShape {
+class TEllipseShape final : public AbstractObject {
    public:
     explicit TEllipseShape(const QPoint& topLeft, const QPoint& bottomRight);
 

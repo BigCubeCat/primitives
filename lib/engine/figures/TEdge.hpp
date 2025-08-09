@@ -3,18 +3,18 @@
 
 #include <memory>
 #include <utility>
-#include "abstract_shape.hpp"
-#include "drawable_iface.hpp"
+#include "AbstractObject.hpp"
+#include "IObject.hpp"
 
 class TEdge : public IObject {
    public:
-    explicit TEdge(std::weak_ptr<AbstractShape> begin)
+    explicit TEdge(std::weak_ptr<AbstractObject> begin)
         : IObject(), mBegin(std::move(begin)) {
         mCurrentEnd = mBegin.lock()->center();
     }
 
-    explicit TEdge(std::weak_ptr<AbstractShape> begin,
-                   std::weak_ptr<AbstractShape> end)
+    explicit TEdge(std::weak_ptr<AbstractObject> begin,
+                   std::weak_ptr<AbstractObject> end)
         : IObject(),
           mBegin(std::move(begin)),
           mEnd(std::move(end)),
@@ -26,19 +26,19 @@ class TEdge : public IObject {
 
     void move(const QPoint& newEnd) override;
 
-    void setEnd(std::weak_ptr<AbstractShape> endShape);
+    void setEnd(std::weak_ptr<AbstractObject> endShape);
 
     bool isAlive() const;
 
     bool operator<(const TEdge& rhs) const;
 
-    std::weak_ptr<AbstractShape> from() const;
+    std::weak_ptr<AbstractObject> from() const;
 
-    std::weak_ptr<AbstractShape> to() const;
+    std::weak_ptr<AbstractObject> to() const;
 
    private:
-    std::weak_ptr<AbstractShape> mBegin;
-    std::weak_ptr<AbstractShape> mEnd;
+    std::weak_ptr<AbstractObject> mBegin;
+    std::weak_ptr<AbstractObject> mEnd;
     bool mNotTemporary = false;
     QPoint mCurrentEnd;
 };

@@ -6,16 +6,16 @@
 
 #include "figures/shapes.hpp"
 
-using ShapePtr = std::shared_ptr<AbstractShape>;
+using ObjectPtr = std::shared_ptr<AbstractObject>;
 
-using ObjectContainer = std::list<ShapePtr>;
+using ObjectContainer = std::list<ObjectPtr>;
 
 class TObjectContainer {
    public:
     /*!
      * Добавление фигуры в множество
      */
-    void insert(const ShapePtr& shape);
+    void insert(const ObjectPtr& shape);
 
     void draw(QPainter& painter) const;
 

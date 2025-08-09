@@ -21,7 +21,7 @@ class TJoinPolicy final : public AbstractPolicy {
     void rollback() override;
 
    private:
-    std::shared_ptr<AbstractShape> mCurrentObject;
+    std::shared_ptr<AbstractObject> mCurrentObject;
     std::shared_ptr<TEdge> mCurrentEdge;
     QPoint mStartPoint;
 };

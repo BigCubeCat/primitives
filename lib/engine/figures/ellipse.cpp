@@ -11,7 +11,7 @@ bool is_point_inside_ellipse(const QPoint& point, const QPoint& center,
 };  // namespace
 
 TEllipseShape::TEllipseShape(const QPoint& topLeft, const QPoint& bottomRight)
-    : AbstractShape(topLeft, bottomRight) {
+    : AbstractObject(topLeft, bottomRight) {
     const auto box = boundingBox();
     mFirstRadius = static_cast<double>(box.width()) / 2.0;
     mSecondRadius = static_cast<double>(box.height()) / 2.0;

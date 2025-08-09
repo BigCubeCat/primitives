@@ -1,4 +1,4 @@
-#include "object_container.hpp"
+#include "TObjectContainer.hpp"
 
 void TObjectContainer::draw(QPainter& painter) const {
     for (const auto& object : mShapesList) {
@@ -9,7 +9,7 @@ void TObjectContainer::draw(QPainter& painter) const {
     }
 }
 
-void TObjectContainer::insert(const ShapePtr& shape) {
+void TObjectContainer::insert(const ObjectPtr& shape) {
     mShapesList.push_back(shape);
 }
 
