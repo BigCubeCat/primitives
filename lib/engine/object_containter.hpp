@@ -27,7 +27,7 @@ class TObjectContainter {
      * Обработка клика пользователя.
      * Вернет итератор на ближайший объект
     */
-    ShapeSet::const_iterator nearestPoint(const QPoint& point) const;
+    ShapeSet::iterator& nearestPoint(const QPoint& point);
 
     void erase(ShapeSet::iterator it);
 

@@ -2,19 +2,12 @@
 #define CANVAS_HPP
 
 #include <QMouseEvent>
-#include <QPainter>
-#include <QPen>
-#include <QPixmap>
 #include <QWidget>
 #include <memory>
 
 #include "../engine/TScene.hpp"
-#include "../engine/object_containter.hpp"
 
 class TCanvas : public QWidget {
-   private:
-    std::shared_ptr<TScene> mScene;
-
    public:
     explicit TCanvas(std::shared_ptr<TScene> scene, QWidget* parent = nullptr);
     TCanvas(const TCanvas&) = delete;
@@ -30,6 +23,9 @@ class TCanvas : public QWidget {
     void mouseReleaseEvent(QMouseEvent* event) override;
 
     void paintEvent(QPaintEvent* event) override;
+
+   private:
+    std::shared_ptr<TScene> mScene;
 };
 
 #endif

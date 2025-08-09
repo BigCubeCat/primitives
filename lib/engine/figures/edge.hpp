@@ -19,6 +19,8 @@ class TEdge : public IObject {
 
     void setEnd(std::weak_ptr<AbstractShape> endShape);
 
+    bool operator<(const TEdge& rhs) const;
+
    private:
     std::weak_ptr<AbstractShape> mBegin;
     std::weak_ptr<AbstractShape> mEnd;

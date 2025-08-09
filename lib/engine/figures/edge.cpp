@@ -23,3 +23,7 @@ void TEdge::setEnd(std::weak_ptr<AbstractShape> endShape) {
     mEnd = std::move(endShape);
     mNotTemporary = true;
 }
+
+bool TEdge::operator<(const TEdge& rhs) const {
+    return mCurrentEnd.x() < rhs.mCurrentEnd.x();
+}

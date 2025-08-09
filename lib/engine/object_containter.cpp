@@ -8,9 +8,9 @@ void TObjectContainter::erase(ShapeSet::iterator it) {
     mShapesList.erase(it);
 }
 
-ShapeSet::const_iterator TObjectContainter::nearestPoint(const QPoint& point) const {
+ShapeSet::iterator& TObjectContainter::nearestPoint(const QPoint& point) {
     const ShapePtr cursor = std::make_shared<TRectangleShape>(point, point);
-    const auto it = mShapesList.lower_bound(cursor);
+    auto it = mShapesList.lower_bound(cursor);
     while (it != mShapesList.end()) {
         if (it->get()->contains(point)) {
             break;
