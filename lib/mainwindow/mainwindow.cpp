@@ -2,9 +2,13 @@
 #include "ui_mainwindow.h"
 
 #include <QFileDialog>
+#include <QJsonDocument>
+#include <QMessageBox>
 #include <memory>
 
 #include "../engine/TScene.hpp"
+#include "../utils/io.hpp"
+#include "../utils/serialization.hpp"
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent),
@@ -39,13 +43,22 @@ void MainWindow::setupToolbar() {
 }
 
 void MainWindow::connectSlots() {
-    connect(mUi->actionEllipse, &QAction::triggered, this, &MainWindow::setEllipse);
-    connect(mUi->actionRectangle, &QAction::triggered, this, &MainWindow::setRectangle);
-    connect(mUi->actionTriangle, &QAction::triggered, this, &MainWindow::setTriangle);
+    connect(mUi->actionEllipse, &QAction::triggered, this,
+            &MainWindow::setEllipse);
+    connect(mUi->actionRectangle, &QAction::triggered, this,
+            &MainWindow::setRectangle);
+    connect(mUi->actionTriangle, &QAction::triggered, this,
+            &MainWindow::setTriangle);
 
     connect(mUi->actionEdge, &QAction::triggered, this, &MainWindow::setJoin);
     connect(mUi->actionMove, &QAction::triggered, this, &MainWindow::setMove);
-    connect(mUi->actionDelete, &QAction::triggered, this, &MainWindow::setDelete);
+    connect(mUi->actionDelete, &QAction::triggered, this,
+            &MainWindow::setDelete);
+
+    connect(mUi->actionSave, &QAction::triggered, this, &MainWindow::onSave);
+    connect(mUi->actionSave_As, &QAction::triggered, this,
+            &MainWindow::onSaveAs);
+    connect(mUi->actionOpen, &QAction::triggered, this, &MainWindow::onOpen);
 }
 
 MainWindow::~MainWindow() {
@@ -81,4 +94,33 @@ void MainWindow::setDelete() {
 
 void MainWindow::setMove() {
     mScene->setTool(EToolTag::kMove);
+}
+
+void MainWindow::onOpen() {
+    const QString fileName = QFileDialog::getOpenFileName(
+        this, "Open File", "", "Text Files (*.txt);;All Files (*)");
+    if (fileName.isEmpty())
+        return;
+    mCurrentFilePath = fileName;
+    io_utils::loadScene(mScene, mCurrentFilePath);
+    statusBar()->showMessage(QFileInfo(mCurrentFilePath).fileName());
+    mCanvas->update();
+}
+
+void MainWindow::onSave() {
+    if (mCurrentFilePath.isEmpty()) {
+        onSaveAs();
+        return;
+    }
+    io_utils::saveScene(mScene, mCurrentFilePath);
+}
+
+void MainWindow::onSaveAs() {
+    const QString fileName = QFileDialog::getSaveFileName(
+        this, "Save File As", "", "Text Files (*.txt);;All Files (*)");
+    if (fileName.isEmpty())
+        return;
+    mCurrentFilePath = fileName;
+    io_utils::saveScene(mScene, mCurrentFilePath);
+    statusBar()->showMessage(QFileInfo(mCurrentFilePath).fileName());
 }

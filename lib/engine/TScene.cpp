@@ -6,6 +6,10 @@
 
 TScene::TScene() : mObjectFactory(TObjectFactory::instance()) {}
 
+TObjectContainer TScene::objects() const {
+    return mObjectContainer;
+}
+
 void TScene::draw(QPainter& painter) const {
     mObjectContainer.draw(painter);
     if (mCurrentObject)
@@ -15,7 +19,7 @@ void TScene::draw(QPainter& painter) const {
     }
 }
 
-void TScene::setContainer(const TObjectContainter& container) {
+void TScene::setContainer(const TObjectContainer& container) {
     mObjectContainer = container;
 }
 
@@ -49,7 +53,7 @@ void TScene::move(const QPoint& point) {
         mCurrentEdge->move(point);
     } else if (mToolTag == EToolTag::kCreate) {
         mCurrentObject =
-            mObjectFactory.createObject(mCurrentPoint, point, mObjectTag);
+            mObjectFactory(mCurrentPoint, point, mObjectTag);
     } else if (mToolTag == EToolTag::kMove && mCurrentObject != nullptr) {
         mCurrentObject->move(point - mCurrentPoint);
         mCurrentPoint = point;
@@ -59,7 +63,7 @@ void TScene::move(const QPoint& point) {
 void TScene::commit(const QPoint& point) {
     if (mToolTag == EToolTag::kCreate) {
         mCurrentObject =
-            mObjectFactory.createObject(mCurrentPoint, point, mObjectTag);
+            mObjectFactory(mCurrentPoint, point, mObjectTag);
         mObjectContainer.insert(mCurrentObject);
         mCurrentObject = nullptr;
     } else if (mToolTag == EToolTag::kJoin && mCurrentEdge != nullptr) {

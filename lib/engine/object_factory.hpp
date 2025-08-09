@@ -28,7 +28,7 @@ class TObjectFactory {
    public:
     static TObjectFactory& instance();
 
-    std::shared_ptr<AbstractShape> createObject(const QPoint& topLeft,
+    std::shared_ptr<AbstractShape> operator()(const QPoint& topLeft,
                                                 const QPoint& bottomRight,
                                                 const EObjectTag& tag);
 

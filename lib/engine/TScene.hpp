@@ -1,7 +1,7 @@
 #ifndef FIGURES_SCENE_HPP
 #define FIGURES_SCENE_HPP
 
-#include "object_containter.hpp"
+#include "object_container.hpp"
 #include "object_factory.hpp"
 
 class TScene {
@@ -10,7 +10,7 @@ class TScene {
 
     void draw(QPainter& painter) const;
 
-    void setContainer(const TObjectContainter& container);
+    void setContainer(const TObjectContainer& container);
 
     /*!
      * @param point Начальная точка
@@ -27,8 +27,10 @@ class TScene {
 
     void setObject(const EObjectTag& obj);
 
+    TObjectContainer objects() const;
+
    private:
-    TObjectContainter mObjectContainer;
+    TObjectContainer mObjectContainer;
     TObjectFactory& mObjectFactory;
     EToolTag mToolTag = EToolTag::kCreate;
     EObjectTag mObjectTag = EObjectTag::kRectangle;
