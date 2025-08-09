@@ -34,7 +34,7 @@
      <x>0</x>
      <y>0</y>
      <width>763</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -115,6 +115,9 @@
    </property>
   </action>
   <action name="actionRectangle">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset>
      <normalon>:/icons/figure/icons/figure/rect.png</normalon>
@@ -128,6 +131,9 @@
    </property>
   </action>
   <action name="actionTriangle">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset>
      <normalon>:/icons/figure/icons/figure/triangle.png</normalon>
@@ -141,6 +147,9 @@
    </property>
   </action>
   <action name="actionEllipse">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset>
      <normalon>:/icons/figure/icons/figure/check.png</normalon>
@@ -154,6 +163,9 @@
    </property>
   </action>
   <action name="actionEdge">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset>
      <normalon>:/icons/figure/icons/figure/join.png</normalon>
@@ -167,6 +179,9 @@
    </property>
   </action>
   <action name="actionMove">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset>
      <normalon>:/icons/actions/icons/actions/exchange.png</normalon>
@@ -180,6 +195,9 @@
    </property>
   </action>
   <action name="actionDelete">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset>
      <normalon>:/icons/actions/icons/actions/delete.png</normalon>
