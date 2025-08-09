@@ -29,6 +29,15 @@ add_library(${PROJECT_NAME} STATIC
         object_factory.hpp
         TScene.cpp
         TScene.hpp
+        policy/AbstractPolicy.hpp
+        policy/TMovePolicy.cpp
+        policy/TMovePolicy.hpp
+        policy/TJoinPolicy.cpp
+        policy/TJoinPolicy.hpp
+        policy/TDeletePolicy.cpp
+        policy/TDeletePolicy.hpp
+        policy/TCreatePolicy.cpp
+        policy/TCreatePolicy.hpp
 )
 
 target_link_libraries(${PROJECT_NAME}

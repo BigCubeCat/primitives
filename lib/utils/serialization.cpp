@@ -47,8 +47,8 @@ QJsonObject serialization::serializeEdge(
 QJsonObject serialization::serializeScene(
     const std::shared_ptr<TScene>& scene) {
     const auto objectContainer = scene->objects();
-    const auto shapes = objectContainer.objects();
-    const auto edges = objectContainer.edges();
+    const auto shapes = objectContainer->objects();
+    const auto edges = objectContainer->edges();
     QJsonObject result;
     QJsonArray objectsArray;
     QJsonArray edgeArray;
@@ -111,14 +111,14 @@ std::shared_ptr<TEdge> serialization::deserializeEdge(
 }
 
 void serialization::deserializeScene(std::shared_ptr<TScene>& scene, const QJsonObject& node) {
-    TObjectContainer mContainer;
+    std::shared_ptr<TObjectContainer> mContainer;
 
     QJsonArray nodesArray = node["objects"].toArray();
     std::vector<std::shared_ptr<AbstractShape>> objects;
     for (const auto &nVal : nodesArray) {
         const auto objectJson = nVal.toObject();
         auto shape = serialization::deserializeObject(objectJson);
-        mContainer.insert(shape);
+        mContainer->insert(shape);
         objects.push_back(shape);
     }
     QJsonArray linksArray = node["links"].toArray();
@@ -126,7 +126,7 @@ void serialization::deserializeScene(std::shared_ptr<TScene>& scene, const QJson
         QJsonObject lObj = lVal.toObject();
         auto edge = deserializeEdge(lObj, objects);
         if (edge) {
-            mContainer.addEdge(edge);
+            mContainer->addEdge(edge);
         }
     }
     scene->setContainer(mContainer);
