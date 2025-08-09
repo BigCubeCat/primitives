@@ -2,6 +2,15 @@
 
 #include <QDebug>
 
+void TObjectContainter::draw(QPainter& painter) const {
+    for (const auto& object : mShapesList) {
+        object->draw(painter);
+    }
+    for (const auto& edge : mEdges) {
+        edge->draw(painter);
+    }
+}
+
 void TObjectContainter::insert(const ShapePtr& shape) {
     mShapesList.insert(shape);
 }

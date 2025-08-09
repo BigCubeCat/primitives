@@ -7,11 +7,12 @@
 TScene::TScene() : mObjectFactory(TObjectFactory::instance()) {}
 
 void TScene::draw(QPainter& painter) const {
-    for (const auto& value : mObjectContainer) {
-        value->draw(painter);
-    }
+    mObjectContainer.draw(painter);
     if (mCurrentObject)
         mCurrentObject->draw(painter);
+    if (mCurrentEdge) {
+        mCurrentEdge->draw(painter);
+    }
 }
 
 void TScene::setContainer(const TObjectContainter& container) {
@@ -34,6 +35,7 @@ void TScene::click(const QPoint& point) {
         mCurrentPoint = point;
         auto it = mObjectContainer.nearestPoint(point);
         if (it == mObjectContainer.end()) {
+            qDebug() << "object not found: " << point;
             return;
         }
         mCurrentEdge = std::make_shared<TEdge>(*it);
@@ -43,7 +45,7 @@ void TScene::click(const QPoint& point) {
 }
 
 void TScene::move(const QPoint& point) {
-    if (mToolTag == EToolTag::kJoin) {
+    if (mToolTag == EToolTag::kJoin && mCurrentEdge != nullptr) {
         mCurrentEdge->move(point);
     } else if (mToolTag == EToolTag::kCreate) {
         mCurrentObject =
@@ -60,7 +62,7 @@ void TScene::commit(const QPoint& point) {
             mObjectFactory.createObject(mCurrentPoint, point, mObjectTag);
         mObjectContainer.insert(mCurrentObject);
         mCurrentObject = nullptr;
-    } else if (mToolTag == EToolTag::kJoin) {
+    } else if (mToolTag == EToolTag::kJoin && mCurrentEdge != nullptr) {
         auto it = mObjectContainer.nearestPoint(point);
         mCurrentEdge->setEnd(*it);
         mObjectContainer.addEdge(mCurrentEdge);

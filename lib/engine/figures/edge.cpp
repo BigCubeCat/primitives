@@ -6,17 +6,18 @@ void TEdge::draw(QPainter& painter) const {
     const auto beginPoint = firstPtr->center();
 
     const auto secondPtr = mEnd.lock();
-    const auto endPoint = secondPtr->center();
+    auto endPoint =
+        (mNotTemporary && secondPtr) ? secondPtr->center() : mCurrentEnd;
 
     painter.drawLine(beginPoint, endPoint);
 }
 
-void TEdge::move(const QPoint& delta) {
+void TEdge::move(const QPoint& newEnd) {
     if (mNotTemporary) {
         // Нет смысла изменять переменную, если есть конечный узел
         return;
     }
-    mCurrentEnd += delta;
+    mCurrentEnd = newEnd;
 }
 
 void TEdge::setEnd(std::weak_ptr<AbstractShape> endShape) {

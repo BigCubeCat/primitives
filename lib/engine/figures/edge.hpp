@@ -15,7 +15,7 @@ class TEdge : public IObject {
 
     void draw(QPainter& painter) const override;
 
-    void move(const QPoint& delta) override;
+    void move(const QPoint& newEnd) override;
 
     void setEnd(std::weak_ptr<AbstractShape> endShape);
 

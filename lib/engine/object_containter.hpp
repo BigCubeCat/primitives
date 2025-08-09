@@ -23,6 +23,8 @@ class TObjectContainter {
      */
     void insert(const ShapePtr& shape);
 
+    void draw(QPainter& painter) const;
+
     /*!
      * Обработка клика пользователя.
      * Вернет итератор на ближайший объект
@@ -38,6 +40,10 @@ class TObjectContainter {
 
     ShapeSet::const_iterator begin() const { return mShapesList.begin(); }
     ShapeSet::const_iterator end() const { return mShapesList.end(); }
+
+    std::set<std::shared_ptr<TEdge>>& edges() { return mEdges; }
+
+    std::set<std::shared_ptr<TEdge>> edges() const { return mEdges; }
 
    private:
     ShapeSet mShapesList;
