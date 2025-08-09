@@ -6,6 +6,18 @@ void TObjectContainter::insert(const ShapePtr& shape) {
 
 void TObjectContainter::erase(ShapeSet::iterator it) {
     mShapesList.erase(it);
+    for (const auto& edge : mEdges) {
+        if (!edge->isAlive()) {
+            mEdges.erase(edge);
+            break;
+        }
+    }
+}
+
+void TObjectContainter::addEdge(const std::shared_ptr<TEdge>& edge) {
+    if (edge->isAlive()) {
+        mEdges.insert(edge);
+    }
 }
 
 ShapeSet::iterator& TObjectContainter::nearestPoint(const QPoint& point) {

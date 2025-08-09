@@ -27,3 +27,7 @@ void TEdge::setEnd(std::weak_ptr<AbstractShape> endShape) {
 bool TEdge::operator<(const TEdge& rhs) const {
     return mCurrentEnd.x() < rhs.mCurrentEnd.x();
 }
+
+bool TEdge::isAlive() const {
+    return !mBegin.expired() && !mEnd.expired();
+}

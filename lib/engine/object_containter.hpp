@@ -31,6 +31,8 @@ class TObjectContainter {
 
     void erase(ShapeSet::iterator it);
 
+    void addEdge(const std::shared_ptr<TEdge>& edge);
+
     ShapeSet::iterator begin() { return mShapesList.begin(); }
     ShapeSet::iterator end() { return mShapesList.end(); }
 
@@ -39,6 +41,7 @@ class TObjectContainter {
 
    private:
     ShapeSet mShapesList;
+    std::set<std::shared_ptr<TEdge>> mEdges;
 };
 
 #endif

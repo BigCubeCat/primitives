@@ -61,6 +61,7 @@ void TScene::commit(QPoint& point) {
     else if (mToolTag == EToolTag::kJoin) {
         auto it = mObjectContainer.nearestPoint(point);
         mCurrentEdge->setEnd(*it);
+        mObjectContainer.addEdge(mCurrentEdge);
         mCurrentObject = nullptr;
         mCurrentEdge = nullptr;
     }
