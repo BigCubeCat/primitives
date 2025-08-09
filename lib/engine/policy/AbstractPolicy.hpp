@@ -1,10 +1,7 @@
 #ifndef FIGURES_IPOLICY_HPP
 #define FIGURES_IPOLICY_HPP
 
-#include <QPainter>
-#include <QPoint>
-
-#include "../object_container.hpp"
+#include "engine/object_container.hpp"
 
 class AbstractPolicy {
    public:

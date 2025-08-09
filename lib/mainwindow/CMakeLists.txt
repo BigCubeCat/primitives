@@ -28,3 +28,8 @@ set_target_properties(mainwindow PROPERTIES
         AUTOUIC OFF
         AUTORCC OFF
 )
+
+target_include_directories(mainwindow
+        PUBLIC
+        ${CMAKE_SOURCE_DIR}/lib
+)

@@ -5,7 +5,7 @@
 #include <QWidget>
 #include <memory>
 
-#include "../engine/TScene.hpp"
+#include "engine/TScene.hpp"
 
 class TCanvas : public QWidget {
    public:

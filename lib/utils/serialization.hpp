@@ -1,10 +1,10 @@
 #ifndef TSERIALIZATOR_HPP
 #define TSERIALIZATOR_HPP
 
-#include "../engine/TScene.hpp"
-#include "../engine/figures/abstract_shape.hpp"
-#include "../engine/figures/edge.hpp"
-#include "../engine/figures/tag.hpp"
+#include "engine/TScene.hpp"
+#include "engine/figures/abstract_shape.hpp"
+#include "engine/figures/edge.hpp"
+#include "engine/figures/tag.hpp"
 
 #include <QJsonArray>
 #include <QJsonDocument>

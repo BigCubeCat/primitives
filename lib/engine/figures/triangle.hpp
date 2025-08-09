@@ -1,7 +1,7 @@
 #ifndef TRIANGLE_SHAPE_HPP
 #define TRIANGLE_SHAPE_HPP
 
-#include <qpainter.h>
+#include <QPainter>
 #include "abstract_shape.hpp"
 
 class TTriangleShape final : public AbstractShape {

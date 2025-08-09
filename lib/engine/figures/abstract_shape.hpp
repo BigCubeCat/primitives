@@ -1,7 +1,7 @@
 #ifndef ABSTRACT_SHAPE_HPP
 #define ABSTRACT_SHAPE_HPP
 
-#include <qpoint.h>
+#include <QPoint>
 
 #include "drawable_iface.hpp"
 #include "tag.hpp"

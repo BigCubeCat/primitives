@@ -1,6 +1,6 @@
-set(PROJECT_NAME engine_lib)
+set(ENGINELIB_NAME engine_lib)
 
-project(${PROJECT_NAME} LANGUAGES CXX)
+project(${ENGINELIB_NAME} LANGUAGES CXX)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -10,7 +10,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
-add_library(${PROJECT_NAME} STATIC
+add_library(${ENGINELIB_NAME} STATIC
         figures/abstract_shape.hpp
         figures/drawable_iface.hpp
         figures/tag.hpp
@@ -40,7 +40,12 @@ add_library(${PROJECT_NAME} STATIC
         policy/TCreatePolicy.hpp
 )
 
-target_link_libraries(${PROJECT_NAME}
+target_link_libraries(${ENGINELIB_NAME}
         PRIVATE
         Qt${QT_VERSION_MAJOR}::Widgets
+)
+
+target_include_directories(${ENGINELIB_NAME}
+        PUBLIC
+        ${CMAKE_SOURCE_DIR}/lib
 )

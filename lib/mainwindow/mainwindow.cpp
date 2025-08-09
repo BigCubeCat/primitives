@@ -2,13 +2,11 @@
 #include "ui_mainwindow.h"
 
 #include <QFileDialog>
-#include <QJsonDocument>
-#include <QMessageBox>
 #include <memory>
 
-#include "../engine/TScene.hpp"
-#include "../utils/io.hpp"
-#include "../utils/serialization.hpp"
+#include "engine/TScene.hpp"
+#include "utils/io.hpp"
+#include "utils/serialization.hpp"
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent),

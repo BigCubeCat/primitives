@@ -1,7 +1,7 @@
 #ifndef FIGURES_TCREATEPOLICY_HPP
 #define FIGURES_TCREATEPOLICY_HPP
 
-#include "../object_factory.hpp"
+#include "engine/object_factory.hpp"
 #include "AbstractPolicy.hpp"
 
 class TCreatePolicy final : public AbstractPolicy {

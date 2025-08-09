@@ -5,7 +5,7 @@
 
 #include <utility>
 
-#include "../engine/TScene.hpp"
+#include "engine/TScene.hpp"
 
 TCanvas::TCanvas(std::shared_ptr<TScene> scene, QWidget* parent)
     : QWidget(parent), mScene(std::move(scene)) {
