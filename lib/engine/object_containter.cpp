@@ -12,10 +12,10 @@ void TObjectContainter::draw(QPainter& painter) const {
 }
 
 void TObjectContainter::insert(const ShapePtr& shape) {
-    mShapesList.insert(shape);
+    mShapesList.push_back(shape);
 }
 
-void TObjectContainter::erase(ShapeSet::iterator it) {
+void TObjectContainter::erase(ObjectContainer::iterator it) {
     if (it == mShapesList.end()) {
         return;
     }
@@ -34,18 +34,13 @@ void TObjectContainter::addEdge(const std::shared_ptr<TEdge>& edge) {
     }
 }
 
-ShapeSet::iterator TObjectContainter::nearestPoint(const QPoint& point) {
-    const ShapePtr cursor = std::make_shared<TRectangleShape>(point, point);
-    ShapeSet::iterator it = mShapesList.lower_bound(cursor);
-    it--;
-    qDebug() << "TObjectContainter::nearestPoint start";
-    while (it != mShapesList.end()) {
-        qDebug() << "TObjectContainter::nearestPoint";
-        if (it->get()->contains(point)) {
+ObjectContainer::iterator TObjectContainter::nearestPoint(const QPoint& point) {
+    for (auto rit = mShapesList.rbegin(); rit != mShapesList.rend(); ++rit) {
+        if ((*rit)->contains(point)) {
+            auto it = rit.base();
+            --it;
             return it;
         }
-        ++it;
     }
-    qDebug() << "TObjectContainter::nearestPoint finish";
-    return it;
+    return mShapesList.end();
 }

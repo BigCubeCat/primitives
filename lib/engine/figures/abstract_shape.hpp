@@ -30,7 +30,8 @@ class AbstractShape : public IObject {
 
     [[nodiscard]] QPoint center() const { return mBoundingBox.center(); }
 
-    [[nodiscard]] int corner() const { return mBoundingBox.left(); }
+    [[nodiscard]] int leftCorner() const { return mBoundingBox.left(); }
+    [[nodiscard]] int rightCorner() const { return mBoundingBox.right(); }
 
     void move(const QPoint& delta) override {
         mBoundingBox.moveCenter(mBoundingBox.center() + delta);

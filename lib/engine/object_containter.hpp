@@ -8,13 +8,7 @@
 
 using ShapePtr = std::shared_ptr<AbstractShape>;
 
-struct ShapeComparator {
-    bool operator()(const ShapePtr& a, const ShapePtr& b) const {
-        return a->corner() < b->corner();
-    }
-};
-
-using ShapeSet = std::set<ShapePtr, ShapeComparator>;
+using ObjectContainer = std::list<ShapePtr>;
 
 class TObjectContainter {
    public:
@@ -29,24 +23,24 @@ class TObjectContainter {
      * Обработка клика пользователя.
      * Вернет итератор на ближайший объект
     */
-    ShapeSet::iterator nearestPoint(const QPoint& point);
+    ObjectContainer::iterator nearestPoint(const QPoint& point);
 
-    void erase(ShapeSet::iterator it);
+    void erase(ObjectContainer::iterator it);
 
     void addEdge(const std::shared_ptr<TEdge>& edge);
 
-    ShapeSet::iterator begin() { return mShapesList.begin(); }
-    ShapeSet::iterator end() { return mShapesList.end(); }
+    ObjectContainer::iterator begin() { return mShapesList.begin(); }
+    ObjectContainer::iterator end() { return mShapesList.end(); }
 
-    ShapeSet::const_iterator begin() const { return mShapesList.begin(); }
-    ShapeSet::const_iterator end() const { return mShapesList.end(); }
+    ObjectContainer::const_iterator begin() const { return mShapesList.begin(); }
+    ObjectContainer::const_iterator end() const { return mShapesList.end(); }
 
     std::set<std::shared_ptr<TEdge>>& edges() { return mEdges; }
 
     std::set<std::shared_ptr<TEdge>> edges() const { return mEdges; }
 
    private:
-    ShapeSet mShapesList;
+    ObjectContainer mShapesList;
     std::set<std::shared_ptr<TEdge>> mEdges;
 };
 
