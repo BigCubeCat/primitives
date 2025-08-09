@@ -1,0 +1,85 @@
+{
+    "links": [
+        {
+            "from": 1,
+            "to": 1
+        },
+        {
+            "from": 3,
+            "to": 2
+        },
+        {
+            "from": 2,
+            "to": 0
+        },
+        {
+            "from": 0,
+            "to": 0
+        },
+        {
+            "from": 4,
+            "to": 1
+        },
+        {
+            "from": 0,
+            "to": 4
+        }
+    ],
+    "objects": [
+        {
+            "bottom_right": {
+                "x": 438,
+                "y": 269
+            },
+            "top_left": {
+                "x": 307,
+                "y": 156
+            },
+            "type": "rectangle"
+        },
+        {
+            "bottom_right": {
+                "x": 669,
+                "y": 385
+            },
+            "top_left": {
+                "x": 513,
+                "y": 260
+            },
+            "type": "triangle"
+        },
+        {
+            "bottom_right": {
+                "x": 241,
+                "y": 143
+            },
+            "top_left": {
+                "x": 103,
+                "y": 18
+            },
+            "type": "triangle"
+        },
+        {
+            "bottom_right": {
+                "x": 628,
+                "y": 108
+            },
+            "top_left": {
+                "x": 538,
+                "y": 35
+            },
+            "type": "ellipse"
+        },
+        {
+            "bottom_right": {
+                "x": 222,
+                "y": 380
+            },
+            "top_left": {
+                "x": 95,
+                "y": 282
+            },
+            "type": "ellipse"
+        }
+    ]
+}
