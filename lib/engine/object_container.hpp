@@ -10,7 +10,7 @@ using ShapePtr = std::shared_ptr<AbstractShape>;
 
 using ObjectContainer = std::list<ShapePtr>;
 
-class TObjectContainter {
+class TObjectContainer {
    public:
     /*!
      * Добавление фигуры в множество
@@ -38,6 +38,8 @@ class TObjectContainter {
     std::set<std::shared_ptr<TEdge>>& edges() { return mEdges; }
 
     std::set<std::shared_ptr<TEdge>> edges() const { return mEdges; }
+
+    ObjectContainer objects() const { return mShapesList; }
 
    private:
     ObjectContainer mShapesList;

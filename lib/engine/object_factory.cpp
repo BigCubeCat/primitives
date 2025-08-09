@@ -5,7 +5,7 @@ TObjectFactory& TObjectFactory::instance() {
     return instance;
 }
 
-std::shared_ptr<AbstractShape> TObjectFactory::createObject(
+std::shared_ptr<AbstractShape> TObjectFactory::operator() (
     const QPoint& topLeft, const QPoint& bottomRight, const EObjectTag& tag) {
     return mCreators[tag](topLeft, bottomRight);
 }

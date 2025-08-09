@@ -1,8 +1,8 @@
-#include "object_containter.hpp"
+#include "object_container.hpp"
 
 #include <QDebug>
 
-void TObjectContainter::draw(QPainter& painter) const {
+void TObjectContainer::draw(QPainter& painter) const {
     for (const auto& object : mShapesList) {
         object->draw(painter);
     }
@@ -11,11 +11,11 @@ void TObjectContainter::draw(QPainter& painter) const {
     }
 }
 
-void TObjectContainter::insert(const ShapePtr& shape) {
+void TObjectContainer::insert(const ShapePtr& shape) {
     mShapesList.push_back(shape);
 }
 
-void TObjectContainter::erase(ObjectContainer::iterator it) {
+void TObjectContainer::erase(ObjectContainer::iterator it) {
     if (it == mShapesList.end()) {
         return;
     }
@@ -28,13 +28,13 @@ void TObjectContainter::erase(ObjectContainer::iterator it) {
     }
 }
 
-void TObjectContainter::addEdge(const std::shared_ptr<TEdge>& edge) {
+void TObjectContainer::addEdge(const std::shared_ptr<TEdge>& edge) {
     if (edge->isAlive()) {
         mEdges.insert(edge);
     }
 }
 
-ObjectContainer::iterator TObjectContainter::nearestPoint(const QPoint& point) {
+ObjectContainer::iterator TObjectContainer::nearestPoint(const QPoint& point) {
     for (auto rit = mShapesList.rbegin(); rit != mShapesList.rend(); ++rit) {
         if ((*rit)->contains(point)) {
             auto it = rit.base();

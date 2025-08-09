@@ -37,9 +37,7 @@ install(TARGETS ${PROJECT_NAME}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
-# В Qt 6.2 qt_generate_deploy_app_script отсутствует, её можно заменить или убрать.
-# Если нужна упаковка, используйте Qt Installer Framework или qtdeploy (отдельно)
-
+add_subdirectory(lib/utils)
 add_subdirectory(lib/engine)
 add_subdirectory(lib/canvas)
 add_subdirectory(lib/mainwindow)

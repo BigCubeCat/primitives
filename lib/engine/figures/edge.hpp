@@ -11,6 +11,13 @@ class TEdge : public IObject {
     explicit TEdge(std::weak_ptr<AbstractShape> begin)
         : IObject(), mBegin(std::move(begin)) {}
 
+    explicit TEdge(std::weak_ptr<AbstractShape> begin,
+                   std::weak_ptr<AbstractShape> end)
+        : IObject(),
+          mBegin(std::move(begin)),
+          mEnd(std::move(end)),
+          mNotTemporary(true) {}
+
     ~TEdge() override = default;
 
     void draw(QPainter& painter) const override;
@@ -22,6 +29,10 @@ class TEdge : public IObject {
     bool isAlive() const;
 
     bool operator<(const TEdge& rhs) const;
+
+    std::weak_ptr<AbstractShape> from() const;
+
+    std::weak_ptr<AbstractShape> to() const;
 
    private:
     std::weak_ptr<AbstractShape> mBegin;

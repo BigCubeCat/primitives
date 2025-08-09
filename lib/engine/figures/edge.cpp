@@ -32,3 +32,11 @@ bool TEdge::operator<(const TEdge& rhs) const {
 bool TEdge::isAlive() const {
     return !mBegin.expired() && !mEnd.expired();
 }
+
+std::weak_ptr<AbstractShape> TEdge::from() const {
+    return mBegin;
+}
+
+std::weak_ptr<AbstractShape> TEdge::to() const {
+    return mEnd;
+}
